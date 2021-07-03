@@ -191,3 +191,80 @@ main {
 .woocommerce .cart_totals table.shop_table {
 	border: none;
 }
+
+/* ------- Checkout -------- */
+.payment_method_pago_moviles_peru label {
+	display: inline-flex;
+	justify-content: space-between;
+	width: 90%;
+
+	img {
+		width: 2rem;
+	}
+}
+
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea {
+	@apply bg-gray-light px-2 pb-2 pt-3;
+}
+
+.woocommerce form .form-row label,
+.woocommerce-page form .form-row label,
+.form-row {
+	text-align: left !important;
+}
+#order_comments {
+	@apply h-24;
+}
+
+.woocommerce table.shop_table td:not(.product-name),
+.woocommerce table.shop_table th.product-total {
+	@apply text-right;
+}
+
+.woocommerce table.shop_table {
+	@apply border-0 mb-12;
+}
+
+.select2-container--default
+	.select2-results__option--highlighted[data-selected],
+.select2-container--default
+	.select2-results__option--highlighted[aria-selected] {
+	@apply bg-red;
+}
+
+.woocommerce-cart #payment,
+.woocommerce-checkout #payment,
+#add_payment_method #payment {
+	@apply bg-white;
+}
+
+.woocommerce-terms-and-conditions-wrapper {
+	@apply mb-8;
+	.woocommerce-privacy-policy-text p {
+		@apply text-xs;
+		a {
+			@apply underline;
+			&:hover {
+				@apply text-red;
+			}
+		}
+	}
+}
+
+.woocommerce #payment #place_order,
+.woocommerce-page #payment #place_order {
+	@apply w-full bg-white rounded-full border-red border-1 border-solid text-red font-bold font-expanded;
+	&:hover {
+		@apply bg-red text-white;
+	}
+}
+
+.woocommerce-NoticeGroup-checkout {
+	grid-column: span 2 !important;
+}
+
+/* -------- Thank you page --------- */
+.woocommerce ul.order_details li {
+	@apply px-4 pt-4 pb-2 bg-gray-light mr-0;
+}

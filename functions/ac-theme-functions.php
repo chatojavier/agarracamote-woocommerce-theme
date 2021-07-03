@@ -68,10 +68,58 @@ add_shortcode( 'ct_terms', 'list_terms_custom_taxonomy' );
 add_filter('widget_text', 'do_shortcode');
 
 
-//Get the Title
-function ac_get_title_wrap($str_title, $title_class="") {
+//Get the Title Sans Font
+function ac_get_title_sans($str_title, $title_class="") {
     return
     '<h2 class="products-section-title main-title mb-8 text-xl text-center uppercase ' . $title_class .'">
 		<span class="main-title-inner">' . $str_title . '</span>
 	</h2>';
+};
+
+//Get the title Serif Font
+function ac_get_title_serif() {
+    echo
+    '<h2 class="products-section-title mb-16 pb-3 text-4xl text-center text-red font-gtsuper italic w-full border-b-1 border-gray-light border-solid">
+		<span class="main-title-inner">' . get_the_title() . '</span>
+	</h2>';
+};
+
+//Get the title for Order Reviwe
+function ac_order_review_heading() {
+    echo '<h3 id="order_review_heading" class="font-bold font-expanded text-lg mb-6">' . esc_html__( 'Your order', 'woocommerce' ) . '</h3>';
 }
+
+/**
+ * Remove all possible fields on checkout
+ **/
+function wc_remove_checkout_fields( $fields ) {
+
+    // Billing fields
+    // unset( $fields['billing']['billing_company'] );
+    // unset( $fields['billing']['billing_email'] );
+    // unset( $fields['billing']['billing_phone'] );
+    // unset( $fields['billing']['billing_state'] );
+    // unset( $fields['billing']['billing_first_name'] );
+    // unset( $fields['billing']['billing_last_name'] );
+    // unset( $fields['billing']['billing_address_1'] );
+    // unset( $fields['billing']['billing_address_2'] );
+    // unset( $fields['billing']['billing_city'] );
+    unset( $fields['billing']['billing_postcode'] );
+
+    // Shipping fields
+    // unset( $fields['shipping']['shipping_company'] );
+    // unset( $fields['shipping']['shipping_phone'] );
+    // unset( $fields['shipping']['shipping_state'] );
+    // unset( $fields['shipping']['shipping_first_name'] );
+    // unset( $fields['shipping']['shipping_last_name'] );
+    // unset( $fields['shipping']['shipping_address_1'] );
+    // unset( $fields['shipping']['shipping_address_2'] );
+    // unset( $fields['shipping']['shipping_city'] );
+    // unset( $fields['shipping']['shipping_postcode'] );
+
+    // Order fields
+    // unset( $fields['order']['order_comments'] );
+
+    return $fields;
+}
+add_filter( 'woocommerce_checkout_fields', 'wc_remove_checkout_fields' );

@@ -18,12 +18,12 @@
 defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
+
+<?php echo ac_get_title_serif(); ?>
+
 <div class="cart_container | max-w-1024 mx-auto">
 	
-	<h2 class="products-section-title mb-8 text-4xl text-center text-red font-gtsuper italic">
-		<span class="main-title-inner">Carrito de Compras</span>
-	</h2>
-	<form class="woocommerce-cart-form | mb-16" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+<form class="woocommerce-cart-form | mb-16" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 		<?php do_action( 'woocommerce_before_cart_table' ); ?>
 	
 		<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">

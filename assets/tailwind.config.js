@@ -7,10 +7,6 @@ module.exports = {
 	],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
-		maxWidth: {
-			1280: "1280px",
-			1024: "1024px",
-		},
 		colors: {
 			red: "#ff2a00",
 			black: "#000",
@@ -29,6 +25,11 @@ module.exports = {
 			},
 			borderWidth: {
 				1: "1px",
+			},
+			maxWidth: {
+				1280: "1280px",
+				1024: "1024px",
+				512: "512px",
 			},
 		},
 	},
