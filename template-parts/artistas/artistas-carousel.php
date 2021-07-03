@@ -41,9 +41,14 @@ $terms = get_terms( array(
           ?>
           <div class="swiper-slide relative">
             <a href="<?php echo esc_url( $url ); ?>">  
-
-                  <?php echo wp_get_attachment_image($img_id, "large", "", array( "class" => "block w-full h-full object-cover" )); ?>
-              <div class="artist-info absolute top-0 bg-gradient-to-b from-red to-transparent w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer">
+                  <?php 
+                  if ($img_id) {
+                    echo wp_get_attachment_image($img_id, "large", "", array( "class" => "block w-full h-full object-cover" ));
+                  } else {
+                    echo '<img src="' . wc_placeholder_img_src('shop_single') . '" alt="No image found" class="block w-full h-full object-cover">';
+                  }
+                   ?>
+              <div class="artist-info absolute top-0 bg-gradient-to-t from-red to-transparent w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer">
               </div>
               <div class="artist-content absolute bottom-8 text-white text-center w-full px-4">
                 <span class="font-bold font-expanded lowercase"><?php echo $name ?></span>

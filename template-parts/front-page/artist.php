@@ -25,7 +25,13 @@ foreach( $terms as $term ) {
     <div class="artist relative">
         <a href="<?php echo esc_url( $url ); ?>">  
             <div class="square-parent">
-                <?php echo wp_get_attachment_image($img_id, "medium_large", "", array( "class" => "square-child" )); ?>
+                <?php
+                if ($img_id) {
+                    echo wp_get_attachment_image($img_id, "medium_large", "", array( "class" => "square-child" ));
+                } else {
+                    echo '<img src="' . wc_placeholder_img_src('shop_single') . '" alt="No image found" class="square-child">';
+                }
+                ?>
 		    </div>
 			<div class="artist-info absolute top-0 bg-gradient-to-t from-red to-transparent text-white w-full h-full flex justify-center items-end text-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer">
 				<div class="artist-content mb-16">

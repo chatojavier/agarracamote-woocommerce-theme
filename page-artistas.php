@@ -13,7 +13,7 @@ get_header();
         <?php echo get_the_title() ?>
     </h1>
     <?php get_template_part( '/template-parts/artistas/artistas-carousel' ); ?>
-	<?php get_template_part( '/template-parts/general/featured-products', null, array('posts_per_page' => 4) ); ?>
+	<?php get_template_part( '/template-parts/global/featured-products', null, array('posts_per_page' => 4) ); ?>
 </main>
 
 <?php
