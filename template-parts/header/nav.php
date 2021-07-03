@@ -5,38 +5,36 @@
  * @package Advance WooCommerce Theme
  */
 
-$menu_class     = new Advanced_Woocommerce_Theme_Menus();
+$menu_class     = new agarracamote_Woocommerce_Theme_Menus();
 $header_menu_id = $menu_class->get_menu_id( 'awt-header-menu' );
 $header_menus   = wp_get_nav_menu_items( $header_menu_id );
 
 ?>
 
-<nav class="bg-white p-4 max-w-1280 m-auto">
-	<div class="flex items-center justify-between flex-wrap container mx-auto">
-		<div class="flex items-center flex-shrink-0 text-black mr-20">
-			<div class="mr-2">
-				<?php the_custom_logo(); ?>
-			</div>
+<nav class="p-4 max-w-1280 m-auto">
+	<div class="flex items-start justify-between flex-wrap container mx-auto">
+		<div class="header_logo w-60">
+		<?php
+		$logo = get_field('header_logo', 'option');
+		if( $logo ): ?>
 			<div>
-				<p class="font-semibold text-xl tracking-tight">
-					<a class="" href="<?php echo home_url(); ?>"><?php echo get_bloginfo( 'name', 'display' ); ?></a>
-				</p>
-				<p><?php bloginfo( 'description' ); ?></p>
+				<a class="" href="<?php echo home_url(); ?>"><img src="<?php echo $logo['logo_1x'] ?>" alt="" srcset="<?php echo $logo['logo_2x'] ?>"></a>
 			</div>
+		<?php endif; ?>
 		</div>
 		<div class="block lg:hidden">
-			<button id="menu-btn" class="flex items-center px-3 py-2 border rounded text-black border-black hover:text-black hover:border-black">
+			<button id="menu-btn" class="flex items-center px-3 py-2 border rounded text-red border-red hover:text-red hover:border-red">
 				<img width="16" height="16" src="<?php echo AWT_DIR_URI . '/assets/src/svgs/hamburger.svg'; ?>" alt="wishlist">
 			</button>
 		</div>
-		<div id="menu-items" class="h-0 w-full overflow-hidden lg:h-full flex-grow lg:flex lg:items-center lg:w-auto">
-			<div class="text-sm font-medium uppercase lg:flex-grow">
+		<div id="menu-items" class="h-0 w-full overflow-hidden lg:h-full flex-grow lg:flex lg:items-start lg:w-auto">
+			<div class="text-lg font-expanded lowercase lg:flex-grow flex justify-center">
 				<?php
 
 				if ( ! empty( $header_menus ) && is_array( $header_menus ) ) {
 					foreach ( $header_menus as $header_menu ) {
 						printf(
-							'<a class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-black mr-10" href="%1$s">%2$s</a>',
+							'<a class="block mt-4 lg:inline-block lg:mt-0 text-red mr-8" href="%1$s">%2$s</a>',
 							esc_url( $header_menu->url ),
 							esc_html( $header_menu->title )
 						);
@@ -47,24 +45,21 @@ $header_menus   = wp_get_nav_menu_items( $header_menu_id );
 
 			</div>
 			<div class="text-sm font-medium md:flex">
-				<a href="#responsive-header" class="block mt-4 flex items-center md:flex-col lg:mt-0 text-black hover:text-black mr-10">
-					<img width="18" height="18" src="<?php echo AWT_DIR_URI . '/assets/src/svgs/user.svg'; ?>" alt="user">
-					<div class="ml-1 md:ml-0">
-						Profile
-					</div>
+				<?php if( have_rows('social_icons', 'option') ) :
+				while( have_rows('social_icons', 'option') ) : the_row();
+				$icon = get_sub_field('icon');
+				$name = get_sub_field('social_media');
+				$url  = get_sub_field('url');
+				?>
+				<a href="<?php echo $url ?>" class="flex items-center md:flex-col lg:mt-0 text-black hover:text-black mr-2">
+					<img width="20" height="20" src="<?php echo $icon ?>" alt="<?php echo $name ?>">
 				</a>
-				<a href="#responsive-header" class="block mt-4 flex items-center md:flex-col lg:mt-0 text-black hover:text-black mr-10">
-					<img width="18" height="18" src="<?php echo AWT_DIR_URI . '/assets/src/svgs/wishlist.svg'; ?>" alt="wishlist">
-					<div class="ml-1 md:ml-0">
-						Wishlist
-					</div>
-				</a>
-				<a class="block mt-4 flex items-center md:flex-col lg:mt-0 text-black hover:text-black mr-10" href="/cart/">
-					<img width="18" height="18" src="<?php echo AWT_DIR_URI . '/assets/src/svgs/cart.svg'; ?>" alt="cart">
-					<div class="ml-1 md:ml-0">
-						<span>Bag</span>
-						<span class="ml-1">(<?php echo WC()->cart->get_cart_contents_count(); ?>)</span>
-					</div>
+				<?php 
+				endwhile;
+				endif; ?>
+				<a class="flex lg:mt-0 text-red hover:text-black ml-4" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+					<span class="text-xs font-expanded font-bold"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+					<img width="20" height="20" src="<?php echo AWT_DIR_URI . '/assets/src/svgs/icon_bag.svg'; ?>" alt="cart">
 				</a>
 			</div>
 		</div>

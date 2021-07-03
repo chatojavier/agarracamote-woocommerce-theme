@@ -1,7 +1,7 @@
 {
-	"name": "advanced-woocommerce-theme",
+	"name": "agarracamote-woocommerce-theme",
 	"version": "1.0.0",
-	"description": "Advanced WooCommerce Theme packages",
+	"description": "agarracamote WooCommerce Theme packages",
 	"main": "main.js",
 	"scripts": {
 		"build": "cross-env NODE_ENV=production webpack --mode production --progress",
@@ -22,6 +22,7 @@
 		"@babel/preset-react": "^7.10.4",
 		"babel-loader": "^8.1.0",
 		"clean-webpack-plugin": "^3.0.0",
+		"copy-webpack-plugin": "^6.4.1",
 		"cross-env": "^7.0.2",
 		"css-loader": "^4.2.1",
 		"cssnano": "^4.1.10",
@@ -43,6 +44,7 @@
 		"defaults"
 	],
 	"dependencies": {
-		"lodash": "^4.17.20"
+		"lodash": "^4.17.20",
+		"swiper": "^6.7.0"
 	}
 }

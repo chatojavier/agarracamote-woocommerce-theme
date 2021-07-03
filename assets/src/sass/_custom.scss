@@ -1,0 +1,171 @@
+:focus-visible {
+	outline: none;
+}
+
+main {
+	max-width: 1280px;
+	margin: auto;
+}
+
+// Responsive Square
+.square-parent {
+	position: relative;
+	&:before {
+		content: "";
+		display: block;
+		padding-bottom: 100%;
+	}
+}
+.lg\:square-parent {
+	@include lg {
+		position: relative;
+		&:before {
+			content: "";
+			display: block;
+			padding-bottom: 100%;
+		}
+	}
+}
+.lg\:square-none-parent {
+	@include lg {
+		position: unset;
+		&:before {
+			content: unset;
+			display: unset;
+			padding-bottom: unset;
+		}
+	}
+}
+.square-child {
+	@apply absolute top-0 h-full w-full object-cover object-center;
+}
+
+//Button-Rounded
+.button-rounded {
+	@apply py-2 px-4 text-red font-bold font-expanded border-red border-solid border-1 rounded-full;
+
+	&:hover {
+		@apply shadow-md;
+	}
+}
+
+/* ----------- Swiper ----------- */
+//Navigation
+.swiper-navigation {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	height: 112px;
+
+	.swiper-button-next {
+		right: -30px;
+		&::after {
+			font-size: 20px;
+			@apply text-red;
+		}
+	}
+	.swiper-button-prev {
+		left: -30px;
+		&::after {
+			font-size: 20px;
+			@apply text-red;
+		}
+	}
+}
+
+//Thumbnails
+.swiper-slide-thumb-active {
+	opacity: 1 !important;
+}
+.thumb-slider__carousel__item:not(.swiper-slide-thumb-active) {
+	cursor: pointer;
+}
+
+//Category Items
+.cat-item {
+	&:hover {
+		@apply text-red;
+	}
+}
+
+/* --------- Loop Pagination --------- */
+.loop-pagination {
+	ul {
+		@apply flex;
+		li {
+			@apply ml-1;
+			span,
+			a {
+				@apply border border-red border-solid w-6 h-6 flex justify-center items-center;
+			}
+			a {
+				@apply hover:bg-red hover:text-white;
+			}
+		}
+	}
+}
+
+/* ---------- Single Product ----------- */
+.single_product {
+	/* -- Price -- */
+	&-price {
+		del {
+			@apply text-sm;
+		}
+		ins {
+			@apply no-underline;
+			@apply font-bold;
+		}
+	}
+
+	/* -- Cart -- */
+	&-cart {
+		.cart {
+			@apply flex;
+		}
+
+		.quantity {
+			@apply border border-solid border-red text-red flex mr-2;
+
+			input.qty {
+				@apply py-2 pl-2 leading-4 align-middle w-10;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+		}
+		button.single_add_to_cart_button {
+			@apply font-bold font-expanded uppercase px-4 rounded-none;
+		}
+	}
+}
+
+/* -------- Woocommerce buttons --------- */
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit.alt {
+	@apply bg-red border-red border border-solid;
+
+	&:hover {
+		@apply bg-white border-red border border-solid text-red;
+	}
+}
+
+/* -------- Notices --------- */
+.notices_success {
+	font-family: Arial, Helvetica, sans-serif;
+
+	&::before {
+		content: "\e015";
+		color: #8fae1b;
+		font-family: "WooCommerce";
+		@apply mr-4;
+	}
+	a {
+		@apply order-3 ml-auto font-sans font-bold font-expanded uppercase text-xs bg-black bg-opacity-10 text-black;
+		padding: 0.618em 1em;
+		border-radius: 3px;
+		&:hover {
+			@apply bg-opacity-20;
+		}
+	}
+}

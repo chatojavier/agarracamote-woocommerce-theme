@@ -5,7 +5,7 @@
  * @package Advance WooCommerce Theme
  */
 
-class Advanced_Woocommerce_Theme {
+class agarracamote_Woocommerce_Theme {
 
 	public function __construct() {
 
@@ -86,8 +86,9 @@ class Advanced_Woocommerce_Theme {
 		/**
 		 * Register image sizes.
 		 */
-		add_image_size( 'featured-thumbnail', 350, 233, true );
-
+		add_image_size( 'shop_thumbnail_retina', 224, 224, true );
+		add_image_size( 'shop_single_retina', 1200, 0, false );
+		
 
 		// Add theme support for selective refresh for widgets.
 		/**

@@ -2,7 +2,7 @@
 /**
  * Header template.
  *
- * @package Advanced WooCommerce Theme
+ * @package agarracamote WooCommerce Theme
  */
 ?>
 <!doctype html>
@@ -20,9 +20,12 @@
 if ( function_exists( 'wp_body_open' ) ) {
 	wp_body_open();
 }
+
+global $post;
+$post_slug = $post->post_name;
 ?>
 
-<div id="page" class="site">
+<div id="<?php echo $post_slug ?>" class="site">
 	<header id="masthead" class="site-header" role="banner">
 		<?php get_template_part( 'template-parts/header/nav' ); ?>
 	</header>

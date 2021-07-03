@@ -1,0 +1,55 @@
+//Landon Schropp’s breakpoint technique
+$sm-width: 640px;
+
+$md-width: 768px;
+
+$lg-width: 1024px;
+
+$xl-width: 1280px;
+
+$xxl-width: 1536px;
+
+@mixin sm {
+  @media (min-width: #{$sm-width}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$md-width}) {
+    @content;
+  }
+}
+
+@mixin lg {
+    @media (min-width: #{$lg-width}) {
+      @content;
+    }
+  }
+
+  @mixin xl {
+    @media (min-width: #{$xl-width}) {
+      @content;
+    }
+  }
+
+  @mixin xxl {
+    @media (min-width: #{$xxl-width}) {
+      @content;
+    }
+  }
+
+  @mixin retina {
+    @media 
+      (-webkit-min-device-pixel-ratio: 2), 
+      (min-resolution: 192dpi) { 
+        @content;
+    }
+  }
+
+@mixin transition-ease {
+    transition: all 0.25s ease-in-out;
+}
+@mixin vh-mobile($vh) {
+    height: calc(var(--vh, 1vh) * #{$vh});
+}

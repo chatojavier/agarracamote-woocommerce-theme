@@ -8,11 +8,13 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const cssnano                 = require('cssnano')
 const { CleanWebpackPlugin }  = require('clean-webpack-plugin')
 const UglifyJsPlugin          = require('uglifyjs-webpack-plugin')
+const CopyPlugin       = require('copy-webpack-plugin');
 
 // JS Directory path.
 const JS_DIR    = path.resolve(__dirname, 'src/js')
 const IMG_DIR   = path.resolve(__dirname, 'src/img')
 const BUILD_DIR = path.resolve(__dirname, 'build')
+const SRC_DIR   = path.resolve(__dirname, 'src')
 
 const entry = {
   main: JS_DIR + '/main.js',
@@ -32,6 +34,13 @@ const plugins = (argv) => [
   new MiniCssExtractPlugin({
     filename: 'css/[name].css'
   }),
+
+  new CopyPlugin({
+    patterns: [
+      {from: IMG_DIR, to: `${BUILD_DIR}/src/img`},
+      {from: `${SRC_DIR}/svgs`, to: `${BUILD_DIR}/src/svgs`},
+    ],
+  }), 
 ]
 
 const rules = [

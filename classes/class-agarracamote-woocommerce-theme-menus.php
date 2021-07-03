@@ -1,11 +1,11 @@
 <?php
 /**
- * Register Menus
+ * Register Menus & Sidebars
  *
- * @package Advanced WooCommerce Theme
+ * @package agarracamote WooCommerce Theme
  */
 
-class Advanced_Woocommerce_Theme_Menus {
+class agarracamote_Woocommerce_Theme_Menus {
 
 	public function __construct() {
 
@@ -23,8 +23,8 @@ class Advanced_Woocommerce_Theme_Menus {
 
 	public function register_menus() {
 		register_nav_menus([
-			'awt-header-menu' => esc_html__( 'Header Menu', 'advanced-woocommerce-theme' ),
-			'awt-footer-menu' => esc_html__( 'Footer Menu', 'advanced-woocommerce-theme' ),
+			'awt-header-menu' => esc_html__( 'Header Menu', 'agarracamote-woocommerce-theme' ),
+			'awt-footer-menu' => esc_html__( 'Footer Menu', 'agarracamote-woocommerce-theme' ),
 		]);
 	}
 

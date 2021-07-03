@@ -5,7 +5,7 @@
  * @package Advance WooCommerce Theme
  */
 
-class Advanced_Woocommerce_Theme_Assets {
+class agarracamote_Woocommerce_Theme_Assets {
 
 	public function __construct() {
 

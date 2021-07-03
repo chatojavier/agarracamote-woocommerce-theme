@@ -1,9 +1,33 @@
+//fonts
+@import "./fonts";
+
+// import Swiper styles
+@import "../../node_modules/swiper/swiper";
+@import "../../node_modules/swiper/components/navigation/navigation";
+@import "../../node_modules/swiper/components/thumbs/thumbs";
+@import "../../node_modules/swiper/components/lazy/lazy";
+
+//Mixins
+@import "./mixins";
+
+//Tailwind
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer utilities {
+	.cursor-zoomin {
+		cursor: zoom-in;
+	}
+	.font-expanded {
+		font-stretch: expanded;
+	}
+}
 
 // Components
 @import "settings/colors";
 @import "components/pagination";
 @import "components/products";
 
+//custom styles
+@import "./custom";
