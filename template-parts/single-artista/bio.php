@@ -13,14 +13,17 @@ $term = get_queried_object();
 ?>
 
 
- <div class="artist-bio flex mt-10 max-w-1024 mx-auto">
-    <?php if(get_field('image', $term)) :
-    $image = get_field('image', $term);
-    ?>
-    <div class="artist-pic mr-12 flex-shrink-0">
-        <?php echo wp_get_attachment_image( $image, array(400, 460) ); ?>
+ <div class="artist-bio grid grid-cols-2 gap-12 mt-10 max-w-1024 mx-auto w-full">
+    <?php $image = get_field('image', $term); ?>
+    <div class="artist-pic square-parent">
+        <?php
+        if(get_field('image', $term)) {
+            echo wp_get_attachment_image( $image, array("shop_single"), "", array( "class" => "square-child" ) );
+        } else {
+            echo '<img src="' . wc_placeholder_img_src('shop_single') . '" alt="No image found" class="square-child">';
+        }
+        ?>
     </div>
-    <?php endif; ?>
     <div class="artist-info">
         <?php
         $instagram = get_field('instagram', $term);

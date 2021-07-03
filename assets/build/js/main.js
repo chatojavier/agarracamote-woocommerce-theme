@@ -12353,7 +12353,22 @@ window.zoomer = function zoom(event, offsetX, offsetY, x, y) {
   x = offsetX / zoomer.offsetWidth * 100;
   y = offsetY / zoomer.offsetHeight * 100;
   zoomer.style.backgroundPosition = x + "% " + y + "%";
+}; // Move the footer to the botom if the page is smaller than the window
+
+
+var botomFooter = function botomFooter() {
+  var documentHeight = document.documentElement.offsetHeight;
+  var windowHeight = window.innerHeight;
+
+  if (documentHeight < windowHeight) {
+    var footerEl = document.querySelector("footer");
+    footerEl.classList.add("absolute", "bottom-0", "w-full");
+  } else {
+    return;
+  }
 };
+
+document.addEventListener("DOMContentLoaded", botomFooter());
 
 /***/ }),
 

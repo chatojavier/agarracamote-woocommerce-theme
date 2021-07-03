@@ -169,3 +169,25 @@ main {
 		}
 	}
 }
+
+/* ------- Cart Page -------- */
+
+.woocommerce table.shop_table th {
+	font-weight: normal;
+	font-size: 17px;
+}
+.woocommerce table.shop_table tfoot td,
+.woocommerce table.shop_table tfoot th,
+.woocommerce table.shop_table tbody th {
+	font-weight: normal;
+	font-size: 17px;
+}
+.woocommerce-cart table.cart img,
+.woocommerce-checkout table.cart img,
+#add_payment_method table.cart img {
+	width: 75px;
+}
+
+.woocommerce .cart_totals table.shop_table {
+	border: none;
+}

@@ -66,3 +66,12 @@ add_shortcode( 'ct_terms', 'list_terms_custom_taxonomy' );
     
 //Allow Text widgets to execute shortcodes
 add_filter('widget_text', 'do_shortcode');
+
+
+//Get the Title
+function ac_get_title_wrap($str_title, $title_class="") {
+    return
+    '<h2 class="products-section-title main-title mb-8 text-xl text-center uppercase ' . $title_class .'">
+		<span class="main-title-inner">' . $str_title . '</span>
+	</h2>';
+}
