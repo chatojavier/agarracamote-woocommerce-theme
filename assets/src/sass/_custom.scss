@@ -268,3 +268,44 @@ main {
 .woocommerce ul.order_details li {
 	@apply px-4 pt-4 pb-2 bg-gray-light mr-0;
 }
+
+/**-----------------
+* Contact
+--------------------*/
+
+#wpforms-form-133 .wpforms-field-email {
+	display: inline-block;
+	width: 60%;
+	margin-right: 1rem;
+}
+#wpforms-form-133 .wpforms-field-email input {
+	margin-right: 0;
+	max-width: 100%;
+}
+#wpforms-form-133 .wpforms-field-number {
+	display: inline-block;
+	width: calc(40% - 1rem);
+}
+#wpforms-form-133 .wpforms-field-number input {
+	width: 100%;
+	max-width: unset;
+}
+#wpforms-form-133 .wpforms-field-name .wpforms-field-row {
+	max-width: unset;
+}
+div.wpforms-container-full .wpforms-form input[type="submit"],
+div.wpforms-container-full .wpforms-form button[type="submit"],
+div.wpforms-container-full .wpforms-form .wpforms-page-button {
+	@apply py-1 px-6 text-red font-bold font-expanded border-red bg-white border-solid border-1 rounded-full;
+
+	&:hover {
+		@apply text-white bg-red;
+	}
+}
+#post-56 .entry-content .wp-block-columns .wp-block-column:not(:last-child) {
+	margin-right: 3rem;
+}
+
+#post-56 {
+	margin-top: 1rem;
+}
