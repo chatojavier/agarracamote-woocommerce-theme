@@ -82,7 +82,9 @@ const botomFooter = () => {
 	const windowHeight = window.innerHeight;
 	if (documentHeight < windowHeight) {
 		const footerEl = document.querySelector("footer");
-		footerEl.classList.add("absolute", "bottom-0", "w-full");
+		setTimeout(() => {
+			footerEl.classList.add("absolute", "bottom-0", "w-full");
+		}, 2000);
 	} else {
 		return;
 	}

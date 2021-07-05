@@ -45,7 +45,7 @@ $terms = get_terms( array(
                   if ($img_id) {
                     echo wp_get_attachment_image($img_id, "large", "", array( "class" => "block w-full h-full object-cover" ));
                   } else {
-                    echo '<img src="' . wc_placeholder_img_src('shop_single') . '" alt="No image found" class="block w-full h-full object-cover">';
+                    echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="block w-full h-full object-cover">';
                   }
                    ?>
               <div class="artist-info absolute top-0 bg-gradient-to-t from-red to-transparent w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer">

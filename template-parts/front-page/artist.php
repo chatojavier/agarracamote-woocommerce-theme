@@ -29,7 +29,7 @@ foreach( $terms as $term ) {
                 if ($img_id) {
                     echo wp_get_attachment_image($img_id, "medium_large", "", array( "class" => "square-child" ));
                 } else {
-                    echo '<img src="' . wc_placeholder_img_src('shop_single') . '" alt="No image found" class="square-child">';
+                    echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="square-child">';
                 }
                 ?>
 		    </div>

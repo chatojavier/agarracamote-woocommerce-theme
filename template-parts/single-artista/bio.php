@@ -20,7 +20,7 @@ $term = get_queried_object();
         if(get_field('image', $term)) {
             echo wp_get_attachment_image( $image, array("shop_single"), "", array( "class" => "square-child" ) );
         } else {
-            echo '<img src="' . wc_placeholder_img_src('shop_single') . '" alt="No image found" class="square-child">';
+            echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="square-child">';
         }
         ?>
     </div>

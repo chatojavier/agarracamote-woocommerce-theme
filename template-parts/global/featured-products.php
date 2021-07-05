@@ -56,7 +56,7 @@ $the_query = new WP_Query( $query_args );
 	global $post;
 	$post_slug = $post->post_name;
 	if($post_slug == "homepage") : ?>
-	<div class="products-stamp absolute -top-4 right-0">
+	<div class="products-stamp absolute -top-4 right-0 z-50">
 		<img src="<?php echo AWT_BUILD_IMG_URI . '/listas_para_colgar@1x.png' ?>" srcset="<?php echo AWT_BUILD_IMG_URI . '/listas_para_colgar@2x.png' ?>" alt="Listas para colgar" width="320">
 	</div>
 	<?php

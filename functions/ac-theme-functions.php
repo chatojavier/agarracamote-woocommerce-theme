@@ -123,3 +123,199 @@ function wc_remove_checkout_fields( $fields ) {
     return $fields;
 }
 add_filter( 'woocommerce_checkout_fields', 'wc_remove_checkout_fields' );
+
+/* ========================
+ * Create new Post Type
+ =========================== */
+ 
+ function create_posttype() {
+ 
+    register_post_type( 'campaigns',
+    // PT Options
+        array(
+            'labels' 		=> array(
+                'name' 			=> __( 'Campañas' ),
+                'singular_name' => __( 'Campaña' )
+            ),
+			'supports' 		=> array( 'title', 'editor', 'thumbnail' ),
+            'public' 		=> true,
+            'has_archive' 	=> true,
+            'rewrite' 		=> array('slug' => 'campanas'),
+            'show_in_rest' 	=> true,
+			'menu_position' => 21,
+			'menu_icon'		=> 'dashicons-megaphone'
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+
+/**========================
+ * Create new taxonomies
+ ===========================*/
+	// hook into the init action and call create_artista_taxonomies when it fires
+		add_action( 'init', 'create_artista_taxonomies', 0 );
+
+	function create_artista_taxonomies() {
+
+		// Add new taxonomy
+		$labels = array(
+			'name' => _x( 'Artistas', 'taxonomy general name', 'agarracamote' ),
+			'singular_name' => _x( 'Artista', 'taxonomy singular name', 'agarracamote' ),
+			'search_items' => __( 'Search Artistas', 'agarracamote' ),
+			'all_items' => __( 'All Artistas', 'agarracamote' ),
+			'parent_item' => __( 'Parent Artista', 'agarracamote' ),
+			'parent_item_colon' => __( 'Parent Artista:', 'agarracamote' ),
+			'edit_item' => __( 'Edit Artista', 'agarracamote' ),
+			'update_item' => __( 'Update Artista', 'agarracamote' ),
+			'add_new_item' => __( 'Add New Artista', 'agarracamote' ),
+			'new_item_name' => __( 'New Artista Name', 'agarracamote' ),
+			'menu_name' => __( 'Artistas', 'agarracamote' ),
+		);
+
+		$args = array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'show_admin_column' => true,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => 'artistas' ),
+			'public' => true,
+			'show_in_nav_menus' => true
+		);
+
+		register_taxonomy( 'artista', array('product'), $args );
+	}
+
+
+/**========================
+ * Add ACF Blocks.
+===========================*/
+
+function my_acf_init_block_types() {
+
+    // Check function exists.
+    if( function_exists('acf_register_block_type') ) {
+
+        /* ------- Campaign Content Block -------- */
+        acf_register_block_type(array(
+            'name'              => 'campaign_content',
+            'title'             => __('Campaign Content', 'agarracamote'),
+            'description'       => __('A custom Campaign Content.', 'agarracamote'),
+            'render_template'   => 'template-parts/campaigns/block-content.php',
+            'category'          => 'media',
+            'icon'              => 'megaphone',
+            'keywords'          => array( 'campaign', 'description', 'content' ),
+            // 'post_types'        => 'campaigns',
+        ));
+
+        /* ------- Campaign Gallery Block -------- */
+        acf_register_block_type(array(
+            'name'              => 'campaign_galley',
+            'title'             => __('Campaign Gallery', 'agarracamote'),
+            'description'       => __('A custom Campaign Gallery.', 'agarracamote'),
+            'render_template'   => 'template-parts/campaigns/block-gallery.php',
+            'category'          => 'media',
+            'icon'              => 'format-gallery',
+            'keywords'          => array( 'gallery', 'description', 'content' ),
+            // 'post_types'        => 'campaigns',
+        ));
+
+        /* ------- Agency Block -------- */
+        acf_register_block_type(array(
+            'name'              => 'agency',
+            'title'             => __('Agency Block', 'agarracamote'),
+            'description'       => __('A custom Agency Block.', 'agarracamote'),
+            'render_template'   => 'template-parts/agency/block-agency.php',
+            'enqueue_style'     => AWT_BUILD_CSS_URI . '/main.css',
+            'category'          => 'media',
+            'icon'              => 'block-default',
+            'keywords'          => array( 'agency' ),
+            // 'post_types'        => 'campaigns',
+        ));
+    }
+}
+add_action('acf/init', 'my_acf_init_block_types');
+
+/**========================
+ * get field from a Block ACF
+===========================*/
+function get_field_from_block( $selector, $post_id, $block_id ) {
+    // If the post object doesn't even have any blocks, abort early and return false
+    if ( ! has_blocks( $post_id ) ) {
+        return false;
+    }
+
+    // Get our blocks from the post content of the post we're interested in
+    $post_blocks = parse_blocks( get_the_content( '', false, $post_id ) );
+
+    // Loop through all the blocks
+    foreach ( $post_blocks as $block ) {
+
+        // Only look at the block if it matches the $block_id
+        if ( isset( $block['attrs']['id'] ) && $block_id == $block['attrs']['id'] ) {
+
+            if ( isset( $block['attrs']['data'][$selector] ) ) {
+                return $block['attrs']['data'][$selector];
+            } else {
+                break;  // If we found our block but didn't find the selector, abort the loop
+            }
+
+        }
+
+    }
+
+    // If we got here, we either didn't find the block by ID or we didn't find the selector by name
+    return false;
+
+}
+
+
+
+function custom_get_acf_block_ids_from_post( $post_id, $return_count = -1, $arr_block_types = array() ) {
+    // If the post object doesn't even have any blocks, abort early and return an empty array
+    if ( ! has_blocks( $post_id ) ) {
+        return array();
+    }
+
+    // If $arr_block_types is not an array, add the param as the only element of an array. This lets us pass a string if we wanted
+    if ( ! is_array( $arr_block_types ) ) {
+	    $arr_block_types = array( $arr_block_types );
+    }
+
+    // Only check the size of $arr_block_types once. Set a boolean so we know if we're filtering by block type or not
+    $filter_block_types = ( 0 == count( $arr_block_types ) ) ? false : true;
+
+    // Get our blocks from the post content of the post we're interested in
+    $post_blocks = parse_blocks( get_the_content( '', false, $post_id ) );
+
+    // Initialize some vars before we get into the loop
+    $arr_return = array();
+    $found_count = 0;
+
+    // Loop through all the blocks
+    foreach ( $post_blocks as $block ) {
+
+        // Skip this item in the loop if the current block isn't one of the block types we're interested in
+        if ( $filter_block_types && ! in_array( $block['blockName'], $arr_block_types ) ) {
+            continue;
+        }
+
+        // Confirm the block we're looking at has an ID to return in the first place
+        if ( isset( $block['attrs']['id'] ) ) {
+
+            // Add this block ID to the return array
+            $arr_return[] = $block['attrs']['id'];
+
+            // Increment our found count, and see if we've found as many results as we wanted. Return early if so
+                $found_count++;
+                if ( $found_count == $return_count ) {
+                    return $arr_return;
+                }
+        }
+    }
+
+    // If we made it all the way here, return whatever we've found
+    return $arr_return;
+
+}

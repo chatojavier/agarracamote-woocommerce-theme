@@ -14,7 +14,7 @@ get_header();
     </div>
     <?php get_template_part( '/template-parts/single-artista/bio' ); ?>
 	<div class="term-products | mt-12">
-        <?php echo ac_get_title_wrap('Obras'); ?>
+        <?php echo ac_get_title_sans('Obras'); ?>
         <?php wc_get_template_part('loop/grid-products'); ?>
     </div>
 </main>

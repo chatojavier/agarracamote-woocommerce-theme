@@ -28,6 +28,10 @@ if ( ! defined( 'AWT_BUILD_IMG_URI' ) ) {
 	define( 'AWT_BUILD_IMG_URI', untrailingslashit( get_template_directory_uri() ) . '/assets/build/src/img' );
 }
 
+if ( ! defined( 'AWT_BUILD_SVG_URI' ) ) {
+	define( 'AWT_BUILD_SVG_URI', untrailingslashit( get_template_directory_uri() ) . '/assets/build/src/svgs' );
+}
+
 if ( ! defined( 'AWT_BUILD_CSS_URI' ) ) {
 	define( 'AWT_BUILD_CSS_URI', untrailingslashit( get_template_directory_uri() ) . '/assets/build/css' );
 }
@@ -112,40 +116,6 @@ new agarracamote_Woocommerce_Theme();
 		// }
 
 
-/* -------- Create new taxonomies --------- */
-	// hook into the init action and call create_artista_taxonomies when it fires
-		add_action( 'init', 'create_artista_taxonomies', 0 );
-
-	function create_artista_taxonomies() {
-
-		// Add new taxonomy
-		$labels = array(
-			'name' => _x( 'Artistas', 'taxonomy general name', 'textdomain' ),
-			'singular_name' => _x( 'Artista', 'taxonomy singular name', 'textdomain' ),
-			'search_items' => __( 'Search Artistas', 'textdomain' ),
-			'all_items' => __( 'All Artistas', 'textdomain' ),
-			'parent_item' => __( 'Parent Artista', 'textdomain' ),
-			'parent_item_colon' => __( 'Parent Artista:', 'textdomain' ),
-			'edit_item' => __( 'Edit Artista', 'textdomain' ),
-			'update_item' => __( 'Update Artista', 'textdomain' ),
-			'add_new_item' => __( 'Add New Artista', 'textdomain' ),
-			'new_item_name' => __( 'New Artista Name', 'textdomain' ),
-			'menu_name' => __( 'Artistas', 'textdomain' ),
-		);
-
-		$args = array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'show_admin_column' => true,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => 'artistas' ),
-			'public' => true,
-			'show_in_nav_menus' => true
-		);
-
-		register_taxonomy( 'artista', array('product'), $args );
-	}
 
 /* -------- Edit Admin Pages --------- */
 
@@ -193,3 +163,6 @@ function disable_emojis_tinymce( $plugins ) {
 ===========================*/
 require get_template_directory() . '/functions/ac-hooks.php';
 require get_template_directory() . '/functions/ac-theme-functions.php';
+require get_template_directory() . '/functions/ac-shortcodes.php';
+
+

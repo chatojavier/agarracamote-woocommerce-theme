@@ -6719,6 +6719,10 @@ video {
   height: 24rem;
 }
 
+.h-110 {
+  height: 27.25rem;
+}
+
 .h-125 {
   height: 31.25rem;
 }
@@ -19120,12 +19124,12 @@ main {
 .square-child {
   position: absolute;
   top: 0px;
-  height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  height: 100% !important;
 }
 
 .button-rounded {
@@ -25306,6 +25310,10 @@ div.wpforms-container-full .wpforms-form input[type="submit"]:hover, div.wpforms
 
   .sm\:h-96 {
     height: 24rem;
+  }
+
+  .sm\:h-110 {
+    height: 27.25rem;
   }
 
   .sm\:h-125 {
@@ -43274,6 +43282,10 @@ div.wpforms-container-full .wpforms-form input[type="submit"]:hover, div.wpforms
     height: 24rem;
   }
 
+  .md\:h-110 {
+    height: 27.25rem;
+  }
+
   .md\:h-125 {
     height: 31.25rem;
   }
@@ -61238,6 +61250,10 @@ div.wpforms-container-full .wpforms-form input[type="submit"]:hover, div.wpforms
 
   .lg\:h-96 {
     height: 24rem;
+  }
+
+  .lg\:h-110 {
+    height: 27.25rem;
   }
 
   .lg\:h-125 {
@@ -79206,6 +79222,10 @@ div.wpforms-container-full .wpforms-form input[type="submit"]:hover, div.wpforms
     height: 24rem;
   }
 
+  .xl\:h-110 {
+    height: 27.25rem;
+  }
+
   .xl\:h-125 {
     height: 31.25rem;
   }
@@ -97170,6 +97190,10 @@ div.wpforms-container-full .wpforms-form input[type="submit"]:hover, div.wpforms
 
   .\32xl\:h-96 {
     height: 24rem;
+  }
+
+  .\32xl\:h-110 {
+    height: 27.25rem;
   }
 
   .\32xl\:h-125 {

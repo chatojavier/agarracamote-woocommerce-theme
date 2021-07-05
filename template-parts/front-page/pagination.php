@@ -17,8 +17,8 @@ if ( ! empty( $args['total_pages'] ) && ! empty( $args['current_page'] ) ) {
 				'format'    => 'page/%#%',
 				'current'   => $args['current_page'],
 				'total'     => $args['total_pages'],
-				'prev_text' => __( '« Prev', 'agarracamote-woocommerce-theme' ),
-				'next_text' => __( 'Next »', 'agarracamote-woocommerce-theme' ),
+				'prev_text' => __( '« Prev', 'agarracamote' ),
+				'next_text' => __( 'Next »', 'agarracamote' ),
 			] );
 			?>
 		</div>

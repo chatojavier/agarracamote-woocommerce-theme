@@ -37,7 +37,8 @@ main {
 	}
 }
 .square-child {
-	@apply absolute top-0 h-full w-full object-cover object-center;
+	@apply absolute top-0 w-full object-cover object-center;
+	height: 100% !important;
 }
 
 //Button-Rounded

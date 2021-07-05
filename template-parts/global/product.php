@@ -8,7 +8,8 @@
 
 $product_id             = get_the_ID();
 $product                = wc_get_product( $product_id );
-$product_thumbnail_url  = get_the_post_thumbnail_url( $product_id, 'medium' );
+$product_image1x		= get_the_post_thumbnail_url( $product_id, 'shop_catalog' ) ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
+$product_image2x		= get_the_post_thumbnail_url( $product_id, 'shop_single' ) ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
 $product_title          = get_the_title();
 $product_link           = get_the_permalink();
 $sale_price             = $product->get_sale_price();
@@ -25,12 +26,8 @@ $artista_name		    = $artista_terms[0]->name;
 if ( $is_product_in_stock ) {
 	?>
 	<div class="product relative">
-		<div class="relative">
-			<?php if ($product_thumbnail_url) : ?>
-				<img src="<?php echo esc_url( $product_thumbnail_url ); ?>" alt="<?php echo esc_html( $product_title ); ?>">
-			<?php else : ?>
-				<img src="<?php echo wc_placeholder_img_src('shop_gallery'); ?>" alt="No image found">
-			<?php endif; ?>
+		<div class="relative square-parent">
+		<img src="<?php echo esc_url( $product_image1x ); ?>" srcset="<?php echo esc_url( $product_image2x ); ?> 2x" alt="<?php echo esc_html( $product_title ); ?>" loading="lazy" class="square-child" >
 			<!-- Show SALE seal on corner -->
 			<?php
 				if ( $is_product_on_sale ) {
@@ -76,11 +73,7 @@ if ( $is_product_in_stock ) {
 				</div> -->
 			</div>
 		</a>
-		<?php if($is_wawa_print) : ?>
-		<div class="wawa-seal absolute -bottom-20 -right-10 z-10">
-			<img src="<?php echo AWT_BUILD_IMG_URI . '/wawa_prints@1x.png' ?>" alt="Wawa-print" srcset="<?php echo AWT_BUILD_IMG_URI . '/wawa_prints@2x.png' ?>" width="228">
-		</div>
-		<?php endif; ?>
+		<?php get_template_part( '/woocommerce/single-product/wawa-seal' ); ?>
 	</div>
 	<?php
 }

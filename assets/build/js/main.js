@@ -12362,7 +12362,9 @@ var botomFooter = function botomFooter() {
 
   if (documentHeight < windowHeight) {
     var footerEl = document.querySelector("footer");
-    footerEl.classList.add("absolute", "bottom-0", "w-full");
+    setTimeout(function () {
+      footerEl.classList.add("absolute", "bottom-0", "w-full");
+    }, 2000);
   } else {
     return;
   }

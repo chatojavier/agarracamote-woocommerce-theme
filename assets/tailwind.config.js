@@ -21,6 +21,7 @@ module.exports = {
 		},
 		extend: {
 			height: {
+				110: "27.25rem",
 				125: "31.25rem",
 			},
 			borderWidth: {
