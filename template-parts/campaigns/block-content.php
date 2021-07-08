@@ -33,7 +33,7 @@ $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE);
 $title = get_the_title() ?: 'Nombre de Campaña';
 ?>
 
- <div class="campaign-content grid grid-cols-2 gap-12 mt-10 max-w-1024 mx-auto w-full mb-16">
+ <div class="campaign-content flex flex-col-reverse md:grid grid-cols-2 gap-12 mt-10 max-w-1024 mx-auto w-full mb-16">
     <div class="campaign-info">
         <div class="campaign-title flex justify-between py-2 border-b-1 border-solid">
             <span class="campaign-name font-expanded font-bold text-lg"><?php echo $title ?></span>

@@ -24,7 +24,7 @@ get_header( 'shop' );
 
 ?>
 
-<main id="main" class="site-main single_product | max-w-1280 m-auto mt-4 lg:p-4 mb-8" role="main">
+<main id="main" class="site-main single_product | max-w-1280 m-auto mt-4 p-4 mb-8" role="main">
 	<?php get_template_part( '/woocommerce/single-product/breadcrumbs' ); ?>
 
 	<?php while ( have_posts() ) : ?>

@@ -24,3 +24,5 @@ inc/acf/
 *.log
 *.sql
 *.sqlite
+
+.DS_Store

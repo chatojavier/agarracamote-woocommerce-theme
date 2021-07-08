@@ -12,8 +12,8 @@ $footer_menus = wp_get_nav_menu_items( $footer_menu_id );
 
 
 <footer>
-	<div class="footer py-3 text-red">
-		<div class="container mx-auto flex justify-between">
+	<div class="footer py-3 px-6 text-red">
+		<div class="mx-auto md:flex justify-between">
 			<div class="footer-text flex-none md:flex items-center justify-between">
 				<p class="font-bold font-expanded text-xs">© Agarracamote <?php echo date("Y"); ?>. Todos los derechos reservados.</p>
 				<ul>

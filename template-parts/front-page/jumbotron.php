@@ -9,11 +9,11 @@
 ?>
 <?php if( get_field('jumbotron', 28)) :
     $text_jumbo = get_field('jumbotron', 28)?>
-<div class="jumbotron h-96 flex justify-center items-center flex-col">
-    <div class="jumbotron-title text-red text-8xl font-gtsuper text-center">
+<div class="jumbotron h-auto flex justify-center items-center flex-col">
+    <div class="jumbotron-title text-red text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-gtsuper text-center">
         <span><?php echo $text_jumbo['title'] ?></span>
         <span class="fill-current">
-            <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="70" viewBox="0 0 76 68">
+            <svg class="inline-block h-10 md:h-16 lg:h-20" xmlns="http://www.w3.org/2000/svg" width="70" viewBox="0 0 76 68">
             <g>
                 <path class="st0" d="M18.5,68.4C7.7,68.4-1.1,52.9-1.1,34S7.7-0.4,18.5-0.4c10.8,0,19.6,15.4,19.6,34.4S29.3,68.4,18.5,68.4
                     M18.5,1.4C8.7,1.4,0.7,16.1,0.7,34s8,32.6,17.8,32.6S36.3,51.9,36.3,34S28.3,1.4,18.5,1.4"/>

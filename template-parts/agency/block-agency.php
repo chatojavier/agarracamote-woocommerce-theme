@@ -35,13 +35,13 @@ $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE) ?: 'No i
 
  <div class="agency-content mt-10 w-full mb-16">
     <div class="agency__description relative mb-16">
-        <div class="agency__description__text font-gtsuper text-7xl text-center text-red w-full">
+        <div class="agency__description__text text-red text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-gtsuper text-center">
             <?php echo $description ?>
         </div>
         <!-- <img src="<?php echo AWT_BUILD_SVG_URI . '/decoration_eyes.svg' ?>" class="absolute -bottom-4 right-24 w-20"> -->
     </div>
     <div class="agency-pic relative">
-        <figure class="img_wrapper mx-12 h-110 mb-16">
+        <figure class="img_wrapper md:mx-8 lg:mx-12 h-110 mb-16">
             <?php
             echo '<img src="' . $image1x . '" src="' . $image2x . '" alt="' . $image_alt . '" class="object-cover object-center w-full h-full">';
             ?>
@@ -49,7 +49,7 @@ $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE) ?: 'No i
         <img src="<?php echo AWT_BUILD_SVG_URI . '/decoration_cloud.svg' ?>" class="absolute -top-16 left-24 w-60">
     </div>
     <div class="agency__contact relative mb-16">
-        <div class="agency__contact__text font-gtsuper text-6xl text-center text-red w-full">
+        <div class="agency__contact__text text-red text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-gtsuper text-center">
             <?php echo $contact ?>
         </div>
     </div>
@@ -72,7 +72,7 @@ $args = array(
 $loop = new WP_Query( $args );
 ?>
 
-<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
 <?php
 while ( $loop->have_posts() ) : $loop->the_post();

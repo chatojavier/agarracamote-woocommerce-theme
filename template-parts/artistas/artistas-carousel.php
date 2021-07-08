@@ -20,13 +20,13 @@ $terms = get_terms( array(
   }
 
   .swiper-button-prev {
-    left: -40px;
-    color: rgba(255, 42, 0)
+    left: 12px;
+    color: #fff;
   }
 
   .swiper-button-next {
-    right: -40px;
-    color: rgba(255, 42, 0)
+    right: 12px;
+    color: #fff;
   }
 </style>
 

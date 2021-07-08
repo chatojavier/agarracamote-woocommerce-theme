@@ -26,7 +26,7 @@ if ( ! $notices ) {
 ?>
 
 <?php foreach ( $notices as $notice ) : ?>
-	<div class="notices_success | relative mb-8 py-2 pl-12 pr-4 | flex items-center | border-black border-l-8 solid | bg-black bg-opacity-5"<?php echo wc_get_notice_data_attr( $notice ); ?> role="alert">
+	<div class="notices_success | relative mb-8 py-2 pl-12 pr-4 | flex items-center | border-black border-l-8 solid | bg-black bg-opacity-5 | text-black"<?php echo wc_get_notice_data_attr( $notice ); ?> role="alert">
 		<?php echo wc_kses_notice( $notice['notice'] ); ?>
 	</div>
 <?php endforeach; ?>

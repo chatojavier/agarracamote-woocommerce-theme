@@ -36,58 +36,59 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="product-<?php the_ID(); ?>" class="single_product-content flex space-x-20 mb-14">
+<div id="product-<?php the_ID(); ?>" class="single_product-content md:grid grid-cols-2 xl:gap-20 gap-10 gap mb-14">
 	<!-- Gallery Slider -->
-	<?php get_template_part( '/woocommerce/single-product/ac-product-slider' ); ?>
+	<div class="single_product-content--left | mb-6 md:mb-0">
+		<?php get_template_part( '/woocommerce/single-product/ac-product-slider' ); ?>
+	</div>
 
-	<div class="summary entry-summary mt-8">
-		<!-- Product Name -->
-		<h1 class="summary-title | text-2xl font-bold font-expanded uppercase">
-			<?php echo $product_name ?>
-		</h1>
-
-		<!-- Artist name and link -->
-		<?php if ($artist) : ?>
-		<div class="summary-artist | mb-12 | text-xl lowercase">
-			<a href="<?php echo $artist_url ?>" class="hover:text-red"><?php echo $artist_name ?></a>
-		</div>
-		<?php endif; ?>
+	<div class="single_product-content--left">
+		<div class="summary entry-summary">
+			<!-- Product Name -->
+			<h1 class="summary-title | text-2xl font-bold font-expanded uppercase">
+				<?php echo $product_name ?>
+			</h1>
+			<!-- Artist name and link -->
+			<?php if ($artist) : ?>
+			<div class="summary-artist | mb-12 | text-xl lowercase">
+				<a href="<?php echo $artist_url ?>" class="hover:text-red"><?php echo $artist_name ?></a>
+			</div>
+			<?php endif; ?>
 		
-		<!-- Product price -->
-		<p class="single_product-price | mb-12 | text-xl"><?php echo $product->get_price_html(); ?></p>
+			<!-- Product price -->
+			<p class="single_product-price | mb-12 | text-xl"><?php echo $product->get_price_html(); ?></p>
 		
-		<!-- Product Attributes -->
-		<?php if ($product->is_type( 'simple' ) && $attributes) : ?>
-			<div class="single_product-attributes | mb-12">
-				<?php 
-				foreach ($attributes as $attribute => $value) :
-					$attribute_name  = $value['data']['name'];
-					$attribute_value = $value['data']['options'][0];
-					?>
-					<div class="single_product-attribute italic">
-						<span class="attribute-name"><?php echo $attribute_name; ?>: </span>
-						<span class="attribute-value"><?php echo $attribute_value; ?></span>
+			<!-- Product Attributes -->
+			<?php if ($product->is_type( 'simple' ) && $attributes) : ?>
+				<div class="single_product-attributes | mb-12">
+					<?php
+					foreach ($attributes as $attribute => $value) :
+						$attribute_name  = $value['data']['name'];
+						$attribute_value = $value['data']['options'][0];
+						?>
+						<div class="single_product-attribute italic">
+							<span class="attribute-name"><?php echo $attribute_name; ?>: </span>
+							<span class="attribute-value"><?php echo $attribute_value; ?></span>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+			<!-- Add to Cart -->
+			<div class="single_product-cart | mb-12">
+				<?php woocommerce_template_single_add_to_cart(); ?>
+			</div>
+			<!-- Product Description -->
+			<?php if ($product_description) : ?>
+				<div class="single_product-description">
+					<div class="single_product-description-title | text-xl | border-b | mb-4">
+						<?php echo _e('Description'); ?>:
 					</div>
-				<?php endforeach; ?>
-			</div>
-		<?php endif; ?>
-
-		<!-- Add to Cart -->
-		<div class="single_product-cart | mb-12">
-			<?php woocommerce_template_single_add_to_cart(); ?>
+					<div class="single_product-description-text">
+						<?php echo $product_description ?>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
-
-		<!-- Product Description -->
-		<?php if ($product_description) : ?>
-			<div class="single_product-description">
-				<div class="single_product-description-title | text-xl | border-b | mb-4">
-					<?php echo _e('Description'); ?>:
-				</div>
-				<div class="single_product-description-text">
-					<?php echo $product_description ?>
-				</div>
-			</div>
-		<?php endif; ?>
 	</div>
 	
 </div>

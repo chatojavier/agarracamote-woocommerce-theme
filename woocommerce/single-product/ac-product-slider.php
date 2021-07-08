@@ -14,11 +14,11 @@ $featured_image_id = $product->get_image_id();
 ?>
 
 <!-- product Slider -->
-<div class="product-slider relative flex-shrink-0" style="width: 600px">
+<div class="product-slider relative w-full">
 	<?php if( count($gallery_image_ids) > 0 ): ?>
 	<!-- Main Slider -->
-	<div class="relative">
-		<div class="product-slider__carousel swiper-container bg-red" style="height: 600px">
+	<div class="relative square-parent">
+		<div class="product-slider__carousel swiper-container bg-red square-child">
 			<div class="swiper-wrapper">
 			<?php foreach($gallery_image_ids as $image_id):
 			$image1x	= wp_get_attachment_image_src($image_id, 'shop_single');
@@ -42,15 +42,15 @@ $featured_image_id = $product->get_image_id();
 			$imageZoom	= wp_get_attachment_image_src( $featured_image_id, '1536x1536' );
 			?>
 			<!-- Featured Image -->
-			<div class="swiper-slide product-slider__carousel__product flex cursor-zoomin bg-red relative" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/src/img/Dual Ring-1s-80px.gif'); background-position: center; background-repeat: no-repeat; background-size: 40px" data-background="<?php echo $imageZoom[0]; ?>" onmousemove="zoomer(event)">
-				<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" src="<?php echo $image1x[0]; ?>" srcset="<?php echo $image2x[0]; ?> 2x" class="object-cover hover:opacity-0 transition-opacity duration-500">
+			<div class="flex cursor-zoomin bg-red relative square-parent" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/src/img/Dual Ring-1s-80px.gif'); background-position: center; background-repeat: no-repeat; background-size: 40px" data-background="<?php echo $imageZoom[0]; ?>" onmousemove="zoomer(event)">
+				<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" src="<?php echo $image1x[0]; ?>" srcset="<?php echo $image2x[0]; ?> 2x" class="object-cover hover:opacity-0 transition-opacity duration-500 square-child">
 				<?php get_template_part( '/woocommerce/single-product/wawa-seal' ); ?>
 			</div>
 		<?php else :
-			$imageNull	= wc_placeholder_img_src('shop_single');
+			// If there no featured or gallery image
 			?>
-			<div class="swiper-slide product-slider__carousel__product flex bg-red relative" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/src/img/Dual Ring-1s-80px.gif'); background-position: center; background-repeat: no-repeat; background-size: 40px">
-				<img src="<?php echo $imageNull; ?>" class="object-cover">
+			<div class="flex bg-red relative square-parent">
+				<div class="object-cover square-child"></div>
 				<?php get_template_part( '/woocommerce/single-product/wawa-seal' ); ?>
 			</div>
 		<?php endif; ?>

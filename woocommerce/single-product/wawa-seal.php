@@ -7,7 +7,7 @@
  */
 
 $product_id    = get_the_ID();
-$is_wawa_print = has_term(28, 'product_cat', $product_id);
+// $is_wawa_print = has_term(28, 'product_cat', $product_id);
 
 if($is_wawa_print) : ?>
 <div class="wawa-seal absolute -bottom-10 -right-10 z-50">

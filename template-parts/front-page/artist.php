@@ -41,5 +41,5 @@ foreach( $terms as $term ) {
 		</a>
 	</div>
     <?php
-    if($i >= 3) break;
+    if($i >= 4) break;
 }

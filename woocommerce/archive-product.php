@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
 ?>
-<main id="main" class="archive site-main max-w-1280 m-auto mt-4 lg:p-4" role="main">
+<main id="main" class="archive site-main max-w-1280 m-auto mt-4 p-4" role="main">
 <?php
 	wc_get_template_part( 'loop/breadcrumbs' );
 	wc_get_template_part( 'content', 'archive-product' );
