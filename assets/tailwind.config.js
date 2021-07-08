@@ -23,6 +23,7 @@ module.exports = {
 			height: {
 				110: "27.25rem",
 				125: "31.25rem",
+				content: "fit-content",
 			},
 			borderWidth: {
 				1: "1px",
@@ -35,7 +36,11 @@ module.exports = {
 		},
 	},
 	variants: {
-		extend: {},
+		extend: {
+			height: ["group-hover"],
+			width: ["group-hover"],
+			overflow: ["group-hover", "hover"],
+		},
 	},
 	plugins: [],
 };

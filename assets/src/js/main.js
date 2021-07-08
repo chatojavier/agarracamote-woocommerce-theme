@@ -14,11 +14,26 @@ SwiperCore.use([Navigation, Thumbs, Lazy, Controller]);
 // Artistas Carousel
 if (document.querySelector(".artistas-carousel")) {
 	let swiper = new Swiper(".artistas-carousel", {
-		slidesPerView: 4,
+		slidesPerView: 1,
 		spaceBetween: 1,
 		navigation: {
 			nextEl: ".swiper-button-next",
 			prevEl: ".swiper-button-prev",
+		},
+		// Responsive breakpoints
+		breakpoints: {
+			// when window width is >= 640px
+			640: {
+				slidesPerView: 2,
+			},
+			// when window width is >= 768px
+			768: {
+				slidesPerView: 3,
+			},
+			// when window width is >= 1024px
+			1024: {
+				slidesPerView: 4,
+			},
 		},
 	});
 }
@@ -82,12 +97,10 @@ const botomFooter = () => {
 	const windowHeight = window.innerHeight;
 	if (documentHeight < windowHeight) {
 		const footerEl = document.querySelector("footer");
-		setTimeout(() => {
-			footerEl.classList.add("absolute", "bottom-0", "w-full");
-		}, 2000);
+		footerEl.classList.add("absolute", "bottom-0", "w-full");
 	} else {
 		return;
 	}
 };
 
-document.addEventListener("DOMContentLoaded", botomFooter());
+document.addEventListener("load", botomFooter());
