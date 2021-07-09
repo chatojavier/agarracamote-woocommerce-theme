@@ -59,7 +59,7 @@ $header_menus   = wp_get_nav_menu_items( $header_menu_id );
 				$name = get_sub_field('social_media');
 				$url  = get_sub_field('url');
 				?>
-				<a href="<?php echo $url ?>" class="flex items-center md:flex-col lg:mt-0 text-black hover:text-black mr-2">
+				<a href="<?php echo $url ?>" class="flex items-center md:flex-col lg:mt-0 text-black hover:text-black mr-2" target="_blank">
 					<img width="20" height="20" src="<?php echo $icon ?>" alt="<?php echo $name ?>">
 				</a>
 				<?php 
