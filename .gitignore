@@ -26,3 +26,4 @@ inc/acf/
 *.sqlite
 
 .DS_Store
+**/.DS_Store

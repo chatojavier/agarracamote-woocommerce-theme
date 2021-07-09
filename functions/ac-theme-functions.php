@@ -207,6 +207,7 @@ function my_acf_init_block_types() {
             'icon'              => 'megaphone',
             'keywords'          => array( 'campaign', 'description', 'content' ),
             // 'post_types'        => 'campaigns',
+            'mode'              => 'edit',
         ));
 
         /* ------- Campaign Gallery Block -------- */
@@ -219,6 +220,7 @@ function my_acf_init_block_types() {
             'icon'              => 'format-gallery',
             'keywords'          => array( 'gallery', 'description', 'content' ),
             // 'post_types'        => 'campaigns',
+            'mode'              => 'edit',
         ));
 
         /* ------- Agency Block -------- */
@@ -232,6 +234,7 @@ function my_acf_init_block_types() {
             'icon'              => 'block-default',
             'keywords'          => array( 'agency' ),
             // 'post_types'        => 'campaigns',
+            'mode'              => 'edit',
         ));
     }
 }
