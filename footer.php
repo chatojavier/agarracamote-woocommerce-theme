@@ -11,7 +11,7 @@ $footer_menus = wp_get_nav_menu_items( $footer_menu_id );
 ?>
 
 
-<footer>
+<footer class="absolute bottom-0">
 	<div class="footer py-3 px-6 text-red">
 		<div class="mx-auto md:flex justify-between">
 			<div class="footer-text flex-none md:flex items-center justify-between">

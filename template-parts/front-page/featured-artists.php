@@ -8,11 +8,11 @@
  */
 
 ?>
-<div class="artists mx-auto my-5 md:my-10 lg:my-14 md:py-4 lg:py-8 relative">
+<div class="featured_artists mx-auto my-5 md:my-10 lg:my-14 md:py-4 lg:py-8 relative">
 	<h2 class="artists-main-title main-title mb-8 text-xl text-center uppercase">
 		<span class="main-title-inner">Nuestros Artistas</span>
 	</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+    <div class="featured_artists__grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
         <?php
         get_template_part( 'template-parts/front-page/artist' )
         ?>

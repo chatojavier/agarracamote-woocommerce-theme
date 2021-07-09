@@ -91,16 +91,10 @@ window.zoomer = function zoom(event, offsetX, offsetY, x, y) {
 	zoomer.style.backgroundPosition = x + "% " + y + "%";
 };
 
-// Move the footer to the botom if the page is smaller than the window
+// set bottom padding to site
 const botomFooter = () => {
-	const documentHeight = document.documentElement.offsetHeight;
-	const windowHeight = window.innerHeight;
-	if (documentHeight < windowHeight) {
-		const footerEl = document.querySelector("footer");
-		footerEl.classList.add("absolute", "bottom-0", "w-full");
-	} else {
-		return;
-	}
+	const siteElement = document.querySelector(".site");
+	const footerHeight = document.querySelector("footer").offsetHeight;
+	siteElement.style.paddingBottom = footerHeight + "px";
 };
-
-document.addEventListener("load", botomFooter());
+window.onload = botomFooter();

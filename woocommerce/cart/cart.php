@@ -21,7 +21,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <?php echo ac_get_title_serif(); ?>
 
-<div class="cart_container | max-w-1024 mx-auto">
+<div class="cart_container | max-w-1024 mx-auto px-4">
 	
 <form class="woocommerce-cart-form | mb-16" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 		<?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -142,10 +142,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 			</tbody>
 		</table>
-		<div class="cart__coupons | flex justify-between">
+		<div class="cart__coupons | grid gap-y-2 md:flex md:justify-between text-sm md:text-base">
 			<?php if ( wc_coupons_enabled() ) { ?>
-				<div class="coupon flex items-center">
-					<input type="text" name="coupon_code" class="input-text | bg-gray-light h-full px-2 mr-2" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <button type="submit" class=" bg-red | text-white font-bold font-expanded | px-4 py-2" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?></button>
+				<div class="coupon grid grid-cols-2 md:flex items-center">
+					<input type="text" name="coupon_code" class="input-text | bg-gray-light h-full px-2 mr-2" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" />
+					<button type="submit" class=" bg-red | text-white font-bold font-expanded | px-4 py-2" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>">
+						<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>
+					</button>
 					<?php do_action( 'woocommerce_cart_coupon' ); ?>
 				</div>
 			<?php } ?>

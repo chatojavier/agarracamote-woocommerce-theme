@@ -102,6 +102,36 @@ main {
 	}
 }
 
+/* --------- Our Artists Section --------- */
+.featured_artists__grid {
+	div.artist {
+		@include md {
+			display: none;
+			&:nth-of-type(-n + 3) {
+				display: block;
+			}
+		}
+	}
+}
+
+/* --------- Featured Products (artists page) --------- */
+#artistas {
+	.featured-products__grid {
+		div.product {
+			display: block;
+			@include md {
+				display: none;
+				&:nth-of-type(-n + 3) {
+					display: block;
+				}
+			}
+			@include lg {
+				display: block;
+			}
+		}
+	}
+}
+
 /* --------- Loop Pagination --------- */
 .loop-pagination {
 	ul {

@@ -77,19 +77,30 @@ if ( post_password_required() ) {
 			<div class="single_product-cart | mb-12">
 				<?php woocommerce_template_single_add_to_cart(); ?>
 			</div>
-			<!-- Product Description -->
+			<!-- Product Description (Desktop / Mobile) -->
 			<?php if ($product_description) : ?>
-				<div class="single_product-description">
+				<div class="single_product-description | md:hidden lg:block">
 					<div class="single_product-description-title | text-xl | border-b | mb-4">
 						<?php echo _e('Description'); ?>:
 					</div>
 					<div class="single_product-description-text">
 						<?php echo $product_description ?>
 					</div>
-				</div>
+				</div> <!-- END Product Description -->
 			<?php endif; ?>
 		</div>
 	</div>
+	<!-- Product Description (Tablet) -->
+	<?php if ($product_description) : ?>
+		<div class="single_product-description | hidden md:block lg:hidden" style="grid-column: 1 / span 2">
+			<div class="single_product-description-title | text-xl | border-b | mb-4">
+				<?php echo _e('Description'); ?>:
+			</div>
+			<div class="single_product-description-text">
+				<?php echo $product_description ?>
+			</div>
+		</div> <!-- END Product Description -->
+	<?php endif; ?>
 	
 </div>
 
