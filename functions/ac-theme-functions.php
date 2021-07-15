@@ -189,6 +189,75 @@ add_action( 'init', 'create_posttype' );
 
 
 /**========================
+ * Woocommerce modifications.
+===========================*/
+
+// Add/Remove Custom Checkout Fields
+add_filter( 'woocommerce_checkout_fields' , 'add_custom_checkout_fields');
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields');
+
+function add_custom_checkout_fields ( $fields ) {
+	$fields['billing']['billing_id_type'] = array(
+		'type'		=>	'select',
+		'options'	=>	array(
+			'dni' => 'DNI',
+			'ce' => 'Carné de Extranjería',
+			'pass' => 'Pasaporte',
+            'ruc' => 'RUC'
+		),
+		'label'		=>	'Tipo de Documento',
+		'required'	=>	true,
+		'priority'	=>	89
+	);
+	$fields['billing']['billing_id_nro'] = array(
+		'type'		=>	'text',
+		'label'		=>	'Número del Identidad (o RUC)',
+		'required'	=>	true,
+		'priority'	=>	90
+	);
+	$fields['billing']['billing_taxes_name'] = array(
+		'type'		=>	'text',
+		'label'		=>	'Razón Social',
+		'required'	=>	false,
+		'priority'	=>	91
+	);
+	unset ( $fields['billing']['billing_postcode'] );
+    return $fields;
+}
+// Change Checkout Fields
+function custom_override_checkout_fields ( $fields ) {
+	$fields['billing']['billing_phone']['label'] = 'Teléfono / Celular';
+    return $fields;
+}
+
+//Display custom field value on the order edit page 
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'edit_woocommerce_order_page', 10, 1 );
+function edit_woocommerce_order_page($order){
+    global $post_id;
+	$order = new WC_Order( $post_id );
+	$billing_id_type    = get_post_meta($order->get_id(), '_billing_id_type', true );
+	$billing_id_nro     = get_post_meta($order->get_id(), '_billing_id_nro', true );
+	$billing_taxes_name = get_post_meta($order->get_id(), '_billing_taxes_name', true );
+	function id_type_name($id_type_key) {
+		if ( $id_type_key == 'dni') {
+			return 'DNI';
+		} elseif ( $id_type_key == 'ce' ) {
+			return 'Carné de Extranjería';
+		} elseif ( $id_type_key == 'pass' ) {
+			return 'Pasaporte';
+		} elseif ( $id_type_key == 'ruc' ) {
+			return 'RUC';
+    	}
+    }
+	if ( !empty($billing_id_type) || !empty($billing_id_nro) ) {
+    	echo '<p><strong>'.__('Documento Tributario').':</strong><br>' . id_type_name($billing_id_type) . ': ' . $billing_id_nro . '</p>';
+	}
+	if ( !empty($billing_taxes_name)) {
+    	echo '<p><strong>'.__('Razón Social').':</strong><br>' . $billing_taxes_name . '</p>';
+	}
+}
+
+/**========================
  * Add ACF Blocks.
 ===========================*/
 
