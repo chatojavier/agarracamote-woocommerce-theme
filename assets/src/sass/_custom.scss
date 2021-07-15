@@ -316,6 +316,44 @@ main {
 	grid-column: span 2 !important;
 }
 
+#billing_id_type_field .woocommerce-input-wrapper {
+	position: relative;
+	width: 10rem;
+	margin-bottom: 0;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 30%;
+		right: 0.45rem;
+		z-index: -10;
+
+		border-color: #888 transparent transparent transparent;
+		border-style: solid;
+		border-width: 5px 4px 0 4px;
+	}
+	select {
+		border: 1px solid #aaa;
+		color: #444;
+		background: none;
+		text-decoration: none;
+		border-radius: 5px;
+		-moz-appearance: none;
+		appearance: none;
+		-webkit-appearance: none;
+		padding: 0.2rem 0.5rem 0rem;
+		text-align: left;
+		max-width: 100%;
+		width: 100%;
+		margin-top: 0.5rem;
+	}
+}
+#billing_taxes_name_field {
+	.optional {
+		display: none;
+	}
+}
+
 /* -------- Thank you page --------- */
 .woocommerce ul.order_details li {
 	@apply px-4 pt-4 pb-2 bg-gray-light mr-0;
