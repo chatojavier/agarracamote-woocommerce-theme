@@ -27,7 +27,10 @@ foreach( $terms as $term ) {
             <div class="square-parent">
                 <?php
                 if ($img_id) {
-                    echo wp_get_attachment_image($img_id, "medium_large", "", array( "class" => "square-child" ));
+                    $img1x = wp_get_attachment_image_url( $img_id, "shop_single" );
+                    $img2x = wp_get_attachment_image_url( $img_id, "large" );
+                    echo '<img src="' . $img1x . '" srcset="' . $img2x . ' 2x" alt="' . $name . '" class="square-child" >';
+                    // echo wp_get_attachment_image($img_id, "medium_large", "", array( "class" => "square-child" ));
                 } else {
                     echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="square-child">';
                 }
