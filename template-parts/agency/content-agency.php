@@ -9,8 +9,8 @@
 $description = get_field('description') ?: 'Your description<br>here...';
 $image_id = get_field('main_image');
 $contact = get_field('contact') ?: 'Your contact<br>here...';
-$image1x = wp_get_attachment_image_url( $image_id, 'shop_single') ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
-$image2x = wp_get_attachment_image_url( $image_id, 'shop_single_retina') ?: '';
+$image1x = wp_get_attachment_image_url( $image_id, 'shop_single_retina') ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
+$image2x = wp_get_attachment_image_url( $image_id, 'full') ?: '';
 $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE) ?: 'No image found';
 ?>
 
