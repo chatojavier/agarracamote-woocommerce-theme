@@ -12,8 +12,8 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(  
     'post_type'      => 'campaigns',
     'post_status'    => 'publish',
-    'orderby'        => 'title', 
-    'order'          => 'ASC',
+    'orderby'        => 'date', 
+    'order'          => 'DESC',
     'posts_per_page' => -1,
     // 'paged'          => $paged
 );
