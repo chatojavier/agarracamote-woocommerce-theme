@@ -40,10 +40,10 @@ if ( $is_product_in_stock ) {
 			?>
 		</div>
 		<a href="<?php echo esc_url( $product_link ); ?>">
-			<div class="product-info absolute top-0 bg-red text-white text-sm font-expanded font-bold lowercase w-full h-full flex justify-center items-center text-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer">
+			<div class="product-info absolute top-0 bg-red text-white text-sm font-expanded font-bold lowercase w-full h-full flex justify-center items-center text-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer p-4">
 				<div class="product-content">
 					<div class="product-artist"><?php echo esc_html( $artista_name ); ?></div>
-					<h3 class="product-title"><?php echo esc_html( $product_title ); ?></h3>
+					<h3 class="product-title leading-none"><?php echo esc_html( $product_title ); ?></h3>
 					<div class="product-price font-semibold">
 						<span class="product-price uppercase">
 							<?php if ($is_product_on_sale) : ?>

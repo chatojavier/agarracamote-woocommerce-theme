@@ -1,3 +1,13 @@
+body p {
+	padding-bottom: 1rem;
+}
+
+h3 {
+	margin: 1.5rem 0;
+	font-size: x-large;
+	font-weight: bold;
+}
+
 :focus-visible {
 	outline: none;
 }
@@ -403,5 +413,32 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 	.entry-content .wp-block-columns .wp-block-column:not(:last-child) {
 		margin-right: 3rem;
+	}
+}
+
+//Styling Visa plugin
+
+.wc_payment_method.payment_method_visanet {
+	padding: 1.41575em 0;
+	label {
+		display: block;
+		cursor: pointer;
+		width: 93%;
+		float: right;
+
+		img {
+			float: right;
+			border: 0;
+			padding: 0;
+			max-height: 1.618em;
+		}
+	}
+}
+
+// Terms and conditions checkbox
+.woocommerce-terms-and-conditions-checkbox-text {
+	@apply text-sm;
+	a {
+		@apply underline;
 	}
 }

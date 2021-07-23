@@ -446,4 +446,17 @@ function ac_validate_image_size( $file ) {
     else
         return $file;
 }
+
+/**
+ * Hide Pages from WP Admin
+ */
+
+add_filter( 'parse_query', 'exclude_pages_from_admin' );
+function exclude_pages_from_admin($query) {
+    global $pagenow,$post_type;
+    if (is_admin() && $pagenow=='edit.php' && $post_type =='page') {
+        $query->query_vars['post__not_in'] = array('683');
+    }
+}
+
 ?>
