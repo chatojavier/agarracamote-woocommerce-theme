@@ -459,4 +459,42 @@ function exclude_pages_from_admin($query) {
     }
 }
 
-?>
+
+/**
+ * Set sort order of productos catalog by rand, and in Artist by Date
+ */
+
+    //Add sorting inputs options
+    add_filter( 'woocommerce_catalog_orderby', 'ac_add_custom_sorting_options' );
+
+    function ac_add_custom_sorting_options( $options ){
+
+        $options['rand'] = 'Ordenar Aleatoreamente';
+
+        return $options;
+
+    }
+
+    //Give to the sorting option functionality
+    add_filter( 'woocommerce_get_catalog_ordering_args', 'ac_custom_product_sorting' );
+
+    function ac_custom_product_sorting( $args ) {
+
+        // Sort Ranomly
+        if ( isset( $_GET['orderby'] ) && 'rand' === $_GET['orderby'] ) {
+            $args['orderby'] = 'rand';
+        }
+
+        return $args;
+
+    }
+
+    //Set Random by default for catalog and Date for Artista
+    add_filter('woocommerce_default_catalog_orderby', 'ac_catalog_orderby');
+
+    function ac_catalog_orderby() {
+        if( is_tax( 'artista' )  ) { 
+            return 'date'; // no changes for any page except Uncategorized
+        }
+        return 'rand';
+    }
