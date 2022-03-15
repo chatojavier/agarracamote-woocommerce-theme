@@ -22,12 +22,12 @@ $featured_image_id = $product->get_image_id();
 			<div class="swiper-wrapper">
 			<?php foreach($gallery_image_ids as $image_id):
 			$image1x	= wp_get_attachment_image_src($image_id, 'shop_single');
-			$image2x	= wp_get_attachment_image_src($image_id, 'shop_single_retina');
+			$image2x	= wp_get_attachment_image_srcset($image_id, 'shop_single');
 			$imageZoom	= wp_get_attachment_image_src($image_id, '1536x1536');
 			?>
 				<!-- Slide -->
 				<div class="swiper-slide product-slider__carousel__product flex cursor-zoomin" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/src/img/Dual Ring-1s-80px.gif'); background-position: center; background-repeat: no-repeat; background-size: 40px" data-background="<?php echo $imageZoom[0]; ?>" onmousemove="zoomer(event)">
-					<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" data-src="<?php echo $image1x[0]; ?>" data-srcset="<?php echo $image2x[0]; ?> 2x" class="swiper-lazy object-cover hover:opacity-0 transition-opacity duration-500">
+					<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" data-src="<?php echo $image1x[0]; ?>" data-srcset="<?php echo $image2x; ?>" sizes="(min-width: 1280px) 584px, (min-width: 768px) 50vw, 100vw" class="swiper-lazy object-cover w-full h-full hover:opacity-0 transition-opacity duration-500">
 				</div>
 			<?php endforeach; ?>
 			</div>
@@ -38,12 +38,12 @@ $featured_image_id = $product->get_image_id();
 	<?php elseif ( count($gallery_image_ids) <= 0):
 		if($featured_image_id) :
 			$image1x	= wp_get_attachment_image_src( $featured_image_id, 'shop_single' );
-			$image2x	= wp_get_attachment_image_src( $featured_image_id, 'shop_single_retina' );
+			$image2x	= wp_get_attachment_image_srcset( $featured_image_id, 'shop_single' );
 			$imageZoom	= wp_get_attachment_image_src( $featured_image_id, '1536x1536' );
 			?>
 			<!-- Featured Image -->
 			<div class="flex cursor-zoomin bg-red relative square-parent" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/src/img/Dual Ring-1s-80px.gif'); background-position: center; background-repeat: no-repeat; background-size: 40px" data-background="<?php echo $imageZoom[0]; ?>" onmousemove="zoomer(event)">
-				<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" src="<?php echo $image1x[0]; ?>" srcset="<?php echo $image2x[0]; ?> 2x" class="object-cover hover:opacity-0 transition-opacity duration-500 square-child">
+				<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" src="<?php echo $image1x[0]; ?>" srcset="<?php echo $image2x; ?>" sizes="(min-width: 1280px) 584px, (min-width: 768px) 50vw, 100vw" class="object-cover h-full w-full hover:opacity-0 transition-opacity duration-500 square-child">
 				<?php get_template_part( '/woocommerce/single-product/wawa-seal' ); ?>
 			</div>
 		<?php else :

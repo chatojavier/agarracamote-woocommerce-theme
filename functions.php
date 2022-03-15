@@ -165,4 +165,13 @@ require get_template_directory() . '/functions/ac-hooks.php';
 require get_template_directory() . '/functions/ac-theme-functions.php';
 require get_template_directory() . '/functions/ac-shortcodes.php';
 
+/**
+ * AIO WP Migration Plug-in functions
+ */
+// Exclude files from export
+add_filter('ai1wm_exclude_content_from_export', function($exclude_filters) {
+	$exclude_filters[] = 'themes/agarracamote-woocommerce-theme/assets/node_modules';
+	return $exclude_filters;
+});
+
 

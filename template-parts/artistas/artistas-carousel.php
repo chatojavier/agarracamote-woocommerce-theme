@@ -38,12 +38,14 @@ $terms = get_terms( array(
           $img_id = get_field('image', $term);
           $name = $term->name;
           $url = get_term_link($term);
+          $img1x = wp_get_attachment_image_src($img_id, "shop_single")[0];
+          $img2x = wp_get_attachment_image_srcset($img_id, "shop_single");
           ?>
           <div class="swiper-slide relative">
             <a href="<?php echo esc_url( $url ); ?>">  
                   <?php 
                   if ($img_id) {
-                    echo wp_get_attachment_image($img_id, "large", "", array( "class" => "block w-full h-full object-cover" ));
+                    echo '<img src="' . $img1x . '" srcset="' . $img2x . '" sizes="(min-width: 1024px) 312px, (min-width: 768px) 32vw, 98vw" alt="No image found" class="block w-full h-full object-cover">';
                   } else {
                     echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="block w-full h-full object-cover">';
                   }

@@ -9,7 +9,7 @@
 $product_id             = get_the_ID();
 $product                = wc_get_product( $product_id );
 $product_image1x		= get_the_post_thumbnail_url( $product_id, 'shop_catalog' ) ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
-$product_image2x		= get_the_post_thumbnail_url( $product_id, 'shop_single' ) ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
+$product_image2x		= wp_get_attachment_image_srcset( get_post_thumbnail_id($product_id), 'shop_single' ) ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
 $product_title          = get_the_title();
 $product_link           = get_the_permalink();
 $sale_price             = $product->get_sale_price();
@@ -27,7 +27,7 @@ if ( $is_product_in_stock ) {
 	?>
 	<div class="product relative">
 		<div class="relative square-parent">
-		<img src="<?php echo esc_url( $product_image1x ); ?>" srcset="<?php echo esc_url( $product_image2x ); ?> 2x" alt="<?php echo esc_html( $product_title ); ?>" loading="lazy" class="square-child" >
+		<img src="<?php echo esc_url( $product_image1x ); ?>" srcset="<?php echo $product_image2x; ?>" sizes="(min-width: 1024px) 300px, (min-width: 768px) 30vw, 45vw" alt="<?php echo esc_html( $product_title ); ?>" loading="lazy" class="square-child" >
 			<!-- Show SALE seal on corner -->
 			<?php
 				if ( $is_product_on_sale ) {
@@ -40,10 +40,10 @@ if ( $is_product_in_stock ) {
 			?>
 		</div>
 		<a href="<?php echo esc_url( $product_link ); ?>">
-			<div class="product-info absolute top-0 bg-red text-white text-sm font-expanded font-bold lowercase w-full h-full flex justify-center items-center text-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer">
+			<div class="product-info absolute top-0 bg-red text-white text-sm font-expanded font-bold lowercase w-full h-full flex justify-center items-center text-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out cursor-pointer p-4">
 				<div class="product-content">
 					<div class="product-artist"><?php echo esc_html( $artista_name ); ?></div>
-					<h3 class="product-title"><?php echo esc_html( $product_title ); ?></h3>
+					<h3 class="product-title leading-none"><?php echo esc_html( $product_title ); ?></h3>
 					<div class="product-price font-semibold">
 						<span class="product-price uppercase">
 							<?php if ($is_product_on_sale) : ?>

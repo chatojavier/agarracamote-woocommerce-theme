@@ -9,8 +9,8 @@
 $description = get_field('description') ?: 'Your description<br>here...';
 $image_id = get_field('main_image');
 $contact = get_field('contact') ?: 'Your contact<br>here...';
-$image1x = wp_get_attachment_image_url( $image_id, 'shop_single') ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
-$image2x = wp_get_attachment_image_url( $image_id, 'shop_single_retina') ?: '';
+$image1x = wp_get_attachment_image_url( $image_id, 'shop_single_retina') ?: AWT_BUILD_IMG_URI . '/red-rectangle.jpg';
+$image2x = wp_get_attachment_image_srcset( $image_id, 'full');
 $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE) ?: 'No image found';
 ?>
 
@@ -37,7 +37,7 @@ $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE) ?: 'No i
     <div class="agency-pic relative">
         <figure class="img_wrapper h-110 mb-16">
             <?php
-            echo '<img src="' . $image1x . '" src="' . $image2x . '" alt="' . $image_alt . '" class="object-cover object-center w-full h-full">';
+            echo '<img src="' . $image1x . '" srcset="' . $image2x . '" sizes="(min-width: 1280px) 1248px, (min-width: 1024px) 98vw" alt="' . $image_alt . '" class="object-cover object-center w-full h-full">';
             ?>
         </figure>
         <img src="<?php echo AWT_BUILD_SVG_URI . '/decoration_cloud.svg' ?>" class="absolute -top-1/10 left-1/10 w-36 sm:w-44 md:w-52 lg:w-60">

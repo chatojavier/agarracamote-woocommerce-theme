@@ -189,6 +189,75 @@ add_action( 'init', 'create_posttype' );
 
 
 /**========================
+ * Woocommerce modifications.
+===========================*/
+
+// Add/Remove Custom Checkout Fields
+add_filter( 'woocommerce_checkout_fields' , 'add_custom_checkout_fields');
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields');
+
+function add_custom_checkout_fields ( $fields ) {
+	$fields['billing']['billing_id_type'] = array(
+		'type'		=>	'select',
+		'options'	=>	array(
+			'dni' => 'DNI',
+			'ce' => 'Carné de Extranjería',
+			'pass' => 'Pasaporte',
+            'ruc' => 'RUC'
+		),
+		'label'		=>	'Tipo de Documento',
+		'required'	=>	true,
+		'priority'	=>	89
+	);
+	$fields['billing']['billing_id_nro'] = array(
+		'type'		=>	'text',
+		'label'		=>	'Número del Identidad (o RUC)',
+		'required'	=>	true,
+		'priority'	=>	90
+	);
+	$fields['billing']['billing_taxes_name'] = array(
+		'type'		=>	'text',
+		'label'		=>	'Razón Social',
+		'required'	=>	false,
+		'priority'	=>	91
+	);
+	unset ( $fields['billing']['billing_postcode'] );
+    return $fields;
+}
+// Change Checkout Fields
+function custom_override_checkout_fields ( $fields ) {
+	$fields['billing']['billing_phone']['label'] = 'Teléfono / Celular';
+    return $fields;
+}
+
+//Display custom field value on the order edit page 
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'edit_woocommerce_order_page', 10, 1 );
+function edit_woocommerce_order_page($order){
+    global $post_id;
+	$order = new WC_Order( $post_id );
+	$billing_id_type    = get_post_meta($order->get_id(), '_billing_id_type', true );
+	$billing_id_nro     = get_post_meta($order->get_id(), '_billing_id_nro', true );
+	$billing_taxes_name = get_post_meta($order->get_id(), '_billing_taxes_name', true );
+	function id_type_name($id_type_key) {
+		if ( $id_type_key == 'dni') {
+			return 'DNI';
+		} elseif ( $id_type_key == 'ce' ) {
+			return 'Carné de Extranjería';
+		} elseif ( $id_type_key == 'pass' ) {
+			return 'Pasaporte';
+		} elseif ( $id_type_key == 'ruc' ) {
+			return 'RUC';
+    	}
+    }
+	if ( !empty($billing_id_type) || !empty($billing_id_nro) ) {
+    	echo '<p><strong>'.__('Documento Tributario').':</strong><br>' . id_type_name($billing_id_type) . ': ' . $billing_id_nro . '</p>';
+	}
+	if ( !empty($billing_taxes_name)) {
+    	echo '<p><strong>'.__('Razón Social').':</strong><br>' . $billing_taxes_name . '</p>';
+	}
+}
+
+/**========================
  * Add ACF Blocks.
 ===========================*/
 
@@ -343,3 +412,89 @@ function storefront_do_shortcode( $tag, array $atts = array(), $content = null )
 
 	return call_user_func( $shortcode_tags[ $tag ], $atts, $content, $tag );
 }
+
+/** 
+ * Set max imagen resolution for media upload
+ */
+add_filter('wp_handle_upload_prefilter','ac_validate_image_size');
+function ac_validate_image_size( $file ) {
+    $image = getimagesize($file['tmp_name']);
+    $minimum = array(
+        'width' => '300',
+        'height' => '300'
+    );
+    $maximum = array(
+        'width' => '4500',
+        'height' => '4500'
+    );
+    $image_width = $image[0];
+    $image_height = $image[1];
+
+    $too_small = "Image dimensions are too small. Minimum size is {$minimum['width']} by {$minimum['height']} pixels. Uploaded image is $image_width by $image_height pixels.";
+    $too_large = "Image dimensions are too large. Maximum size is {$maximum['width']} by {$maximum['height']} pixels. Uploaded image is $image_width by $image_height pixels.";
+
+    if ( $image_width < $minimum['width'] || $image_height < $minimum['height'] ) {
+        // add in the field 'error' of the $file array the message 
+        $file['error'] = $too_small; 
+        return $file;
+    }
+    elseif ( $image_width > $maximum['width'] || $image_height > $maximum['height'] ) {
+        //add in the field 'error' of the $file array the message
+        $file['error'] = $too_large; 
+        return $file;
+    }
+    else
+        return $file;
+}
+
+/**
+ * Hide Pages from WP Admin
+ */
+
+add_filter( 'parse_query', 'exclude_pages_from_admin' );
+function exclude_pages_from_admin($query) {
+    global $pagenow,$post_type;
+    if (is_admin() && $pagenow=='edit.php' && $post_type =='page') {
+        $query->query_vars['post__not_in'] = array('683');
+    }
+}
+
+
+/**
+ * Set sort order of productos catalog by rand, and in Artist by Date
+ */
+
+    //Add sorting inputs options
+    add_filter( 'woocommerce_catalog_orderby', 'ac_add_custom_sorting_options' );
+
+    function ac_add_custom_sorting_options( $options ){
+
+        $options['rand'] = 'Ordenar Aleatoreamente';
+
+        return $options;
+
+    }
+
+    //Give to the sorting option functionality
+    add_filter( 'woocommerce_get_catalog_ordering_args', 'ac_custom_product_sorting' );
+
+    function ac_custom_product_sorting( $args ) {
+
+        // Sort Ranomly
+        if ( isset( $_GET['orderby'] ) && 'rand' === $_GET['orderby'] ) {
+            $args['orderby'] = 'rand';
+        }
+
+        return $args;
+
+    }
+
+    //Set Random by default for catalog and Date for Artista
+    add_filter('woocommerce_default_catalog_orderby', 'ac_catalog_orderby');
+
+    function ac_catalog_orderby() {
+        if( is_tax( 'artista' )  ) { 
+            return 'date'; // no changes for any page except Uncategorized
+        }
+        return 'rand';
+    }

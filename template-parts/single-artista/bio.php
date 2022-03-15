@@ -14,11 +14,14 @@ $term = get_queried_object();
 
 
  <div class="artist-bio md:grid grid-cols-2 gap-12 mt-10 mx-auto w-full">
-    <?php $image = get_field('image', $term); ?>
+    <?php $image = get_field('image', $term);?>
     <div class="artist-pic square-parent mb-5 md:mb-0">
         <?php
-        if(get_field('image', $term)) {
-            echo wp_get_attachment_image( $image, array("shop_single"), "", array( "class" => "square-child" ) );
+        if($image) {
+            $img1x = wp_get_attachment_image_url( $image, 'shop_single' );
+            $img2x = wp_get_attachment_image_srcset( $image, 'shop_single_retina' );
+            // echo wp_get_attachment_image( $image, array("shop_single"), "", array( "class" => "square-child" ) );
+            echo '<img src="' . $img1x . '" srcset="' . $img2x . '" sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 98vw" alt="' . single_term_title() . '" class="square-child">';
         } else {
             echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="square-child">';
         }

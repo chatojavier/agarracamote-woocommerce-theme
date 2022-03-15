@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying 404 pages (not found).
+ * The template for displaying TimeOut.
  *
  * @package Agarracamote WooCommerce Theme
  */
@@ -10,13 +10,13 @@ get_header(); ?>
 
 <main id="main" class="site-main max-w-1280 m-auto mt-4 p-4" role="main">
 
-    <div class="error-404 not-found text-center ">
+    <div class="timeout text-center ">
 
             <header class="page-header">
-                <h1 class="page-title text-4xl font-bold font-expanded my-12"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'storefront' ); ?></h1>
+                <h1 class="page-title text-4xl font-bold font-expanded my-12"><?php echo esc_html('¡Vaya! La conexión exedió el tiempo límite'); ?></h1>
             </header><!-- .page-header -->
 
-            <p><?php esc_html_e( 'Nothing was found at this location. Try searching, or check out the links below.', 'storefront' ); ?></p>
+            <p><?php echo esc_html( 'Inténtalo nuevamente en unos momentos' ); ?></p>
 
             <?php
             // echo '<section aria-label="' . esc_html__( 'Search', 'agarracamote' ) . '">';
