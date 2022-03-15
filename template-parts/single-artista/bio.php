@@ -19,9 +19,15 @@ $term = get_queried_object();
         <?php
         if($image) {
             $img1x = wp_get_attachment_image_url( $image, 'shop_single' );
+<<<<<<< HEAD
             $img2x = wp_get_attachment_image_srcset( $image, 'shop_single_retina' );
             // echo wp_get_attachment_image( $image, array("shop_single"), "", array( "class" => "square-child" ) );
             echo '<img src="' . $img1x . '" srcset="' . $img2x . '" sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 98vw" alt="' . single_term_title() . '" class="square-child">';
+=======
+            $img2x = wp_get_attachment_image_url( $image, 'shop_single_retina' );
+            // echo wp_get_attachment_image( $image, array("shop_single"), "", array( "class" => "square-child" ) );
+            echo '<img src="' . $img1x . '" srcset="' . $img2x . ' 2x" alt="' . single_term_title() . '" class="square-child">';
+>>>>>>> e6907218f1ea6673641c8b25789098bd4a0c9662
         } else {
             echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="square-child">';
         }

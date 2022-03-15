@@ -28,8 +28,13 @@ foreach( $terms as $term ) {
                 <?php
                 if ($img_id) {
                     $img1x = wp_get_attachment_image_url( $img_id, "shop_single" );
+<<<<<<< HEAD
                     $img2x = wp_get_attachment_image_srcset( $img_id, "large" );
                     echo '<img src="' . $img1x . '" srcset="' . $img2x . ' " sizes="(min-width: 1024px) 406px, (min-width: 768px) 31vw, 45vw" alt="' . $name . '" class="square-child" >';
+=======
+                    $img2x = wp_get_attachment_image_url( $img_id, "large" );
+                    echo '<img src="' . $img1x . '" srcset="' . $img2x . ' 2x" alt="' . $name . '" class="square-child" >';
+>>>>>>> e6907218f1ea6673641c8b25789098bd4a0c9662
                     // echo wp_get_attachment_image($img_id, "medium_large", "", array( "class" => "square-child" ));
                 } else {
                     echo '<img src="' . AWT_BUILD_IMG_URI . '/red-rectangle.jpg' . '" alt="No image found" class="square-child">';

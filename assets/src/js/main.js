@@ -98,3 +98,28 @@ const botomFooter = () => {
 	siteElement.style.paddingBottom = footerHeight + "px";
 };
 window.onload = botomFooter();
+
+//Show "Razón Social" when "RUC" is selected.
+
+if (document.getElementById("billing_taxes_name_field")) {
+	//hide "Razón Social"
+	const razonSocial = document.getElementById("billing_taxes_name_field");
+	razonSocial.style.height = 0;
+	razonSocial.style.overflow = "hidden";
+	razonSocial.style.margin = 0;
+	razonSocial.style.paddingTop = 0;
+	razonSocial.style.transitionDuration = "300ms";
+	razonSocial.style.transitionProperty = "height";
+	razonSocial.style.transitionTimingFunction = "ease-in-out";
+
+	//Show "Razón Social" when ruc is selected
+	const selectTag = document.querySelector("#billing_id_type_field .select");
+	selectTag.addEventListener("change", (e) => {
+		const option = e.target.value;
+		if (option === "ruc") {
+			razonSocial.style.height = "80px";
+		} else {
+			razonSocial.style.height = "0";
+		}
+	});
+}

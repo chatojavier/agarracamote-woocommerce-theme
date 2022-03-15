@@ -27,7 +27,11 @@ $featured_image_id = $product->get_image_id();
 			?>
 				<!-- Slide -->
 				<div class="swiper-slide product-slider__carousel__product flex cursor-zoomin" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/src/img/Dual Ring-1s-80px.gif'); background-position: center; background-repeat: no-repeat; background-size: 40px" data-background="<?php echo $imageZoom[0]; ?>" onmousemove="zoomer(event)">
+<<<<<<< HEAD
 					<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" data-src="<?php echo $image1x[0]; ?>" data-srcset="<?php echo $image2x; ?>" sizes="(min-width: 1280px) 584px, (min-width: 768px) 50vw, 100vw" class="swiper-lazy object-cover w-full h-full hover:opacity-0 transition-opacity duration-500">
+=======
+					<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" data-src="<?php echo $image1x[0]; ?>" data-srcset="<?php echo $image2x[0]; ?> 2x" class="swiper-lazy object-cover w-full h-full hover:opacity-0 transition-opacity duration-500">
+>>>>>>> e6907218f1ea6673641c8b25789098bd4a0c9662
 				</div>
 			<?php endforeach; ?>
 			</div>
@@ -43,7 +47,11 @@ $featured_image_id = $product->get_image_id();
 			?>
 			<!-- Featured Image -->
 			<div class="flex cursor-zoomin bg-red relative square-parent" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/src/img/Dual Ring-1s-80px.gif'); background-position: center; background-repeat: no-repeat; background-size: 40px" data-background="<?php echo $imageZoom[0]; ?>" onmousemove="zoomer(event)">
+<<<<<<< HEAD
 				<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" src="<?php echo $image1x[0]; ?>" srcset="<?php echo $image2x; ?>" sizes="(min-width: 1280px) 584px, (min-width: 768px) 50vw, 100vw" class="object-cover h-full w-full hover:opacity-0 transition-opacity duration-500 square-child">
+=======
+				<img width="<?php echo $image1x[1]; ?>" height="<?php echo $image1x[2]; ?>" src="<?php echo $image1x[0]; ?>" srcset="<?php echo $image2x[0]; ?> 2x" class="object-cover h-full w-full hover:opacity-0 transition-opacity duration-500 square-child">
+>>>>>>> e6907218f1ea6673641c8b25789098bd4a0c9662
 				<?php get_template_part( '/woocommerce/single-product/wawa-seal' ); ?>
 			</div>
 		<?php else :
